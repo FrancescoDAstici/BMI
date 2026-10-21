@@ -1,0 +1,142 @@
+/* Stili comuni */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #F1F3F5;
+    color: #1F2328;
+    font-family: sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 60px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* Box bianco */
+.card-box {
+    background-color: #FFFFFF;
+    width: 360px;
+    max-width: 100%;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Form */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #D0D7DE;
+    border-radius: 6px;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #1F2328;
+    color: #F1F3F5;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Card del Risultato BMI */
+.card {
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 16px;
+}
+
+.card .user-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color :#1F2328;
+}
+
+.card .user-info {
+    font-size: 14px;
+    color: #57606A;
+    margin-bottom: 16px;
+}
+
+.card .bmi-value {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color :#1F2328;
+}
+
+.card .fascia {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Le quattro classi della card */
+.card.sottopeso {
+    background-color: #E3EEF9;
+    border-color: #2F6F83; /* #2F6F83 o colore speficato dal prof */
+    color: #2F6F83;
+}
+
+.card.normopeso {
+    background-color: #E3F4E6;
+    border-color: #256D34;
+    color: #256D34;
+}
+
+.card.sovrappeso {
+    background-color: #FCEBD7;
+    border-color: #9A4F06;
+    color: #9A4F06;
+}
+
+.card.obesita {
+    background-color: #FBE2E2;
+    border-color: #B32D2D;
+    color: #B32D2D;
+}
+
+/* Link di ritorno */
+.link-ritorno {
+    color: #1F2328;
+    text-decoration: underline;
+    font-size: 14px;
+}
