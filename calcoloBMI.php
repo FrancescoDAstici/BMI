@@ -1,4 +1,9 @@
 <?php
+//Controllo dell'uso della post
+if ($_SERVER["REQUEST_METHOD"] != "POST"){
+    header("Location: formBMI.html"); //reindirizzazione al form
+}
+
 // Ricezione dati dalla pagina precedente
 $nome = $_POST['nome'];
 $peso = $_POST['peso'];
@@ -29,6 +34,54 @@ if ($bmi < 18.5) {
     $classe_card = "obesita";
     $testo_fascia = "OBESITÀ";
 }
+
+//Controlli pre-scrittura su file
+
+if(empty($nome) || is_numeric($nome)){
+    $nome = "NOT_VALID";
+}
+
+if(empty($peso) || !is_numeric($peso)){
+    $peso = "NOT_VALID";
+}
+
+if(empty($altezza_cm) || !is_numeric($altezza_cm)){
+    $altezza_cm = "NOT_VALID";
+}
+
+if($bmi==0){
+    $bmi = "NOT_VALID";
+    $classe_card = "NOT_VALID";
+}
+
+
+//Creazione e scrittura dei valori sul file
+    $nf="log.csv";
+    $file = fopen($nf, "a");
+
+    if($file)
+    {
+        $record = date("d/m/Y");
+        $record .= ", ";
+        $record .= date("g:i:s");
+        $record .= ", ";
+        $record .= $_SERVER['REMOTE_ADDR'];
+        $record .= ", ";
+        $record .= $nome;
+        $record .= ", ";
+        $record .= $peso;
+        $record .= ", ";
+        $record .= $altezza_cm;
+        $record .= ", ";
+        $record .= $bmi;
+        $record .= ", ";
+        $record .= $classe_card;
+        $record .= ";\n";
+        
+        fwrite($file, $record);
+        fclose($file);
+
+    }
 ?>
 
 <!DOCTYPE html>
