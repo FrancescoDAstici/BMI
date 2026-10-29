@@ -1,13 +1,33 @@
 <?php
 //Controllo dell'uso della post
 if ($_SERVER["REQUEST_METHOD"] != "POST"){
-    header("Location: formBMI.html"); //reindirizzazione al form
+    header("Location: index.html"); //reindirizzazione al form
 }
 
 // Ricezione dati dalla pagina precedente
-$nome = $_POST['nome'];
-$peso = $_POST['peso'];
-$altezza_cm = $_POST['altezza'];
+$nome = isset($_POST['nome']) ? $_POST['nome'] : "" ;
+$peso = isset($_POST['peso']) ? $_POST['peso'] : 0 ;
+$altezza_cm = isset($_POST['altezza']) ? $_POST['altezza'] : 0 ;
+
+
+//Controlli pre-scrittura su file
+
+if(empty($nome) || is_numeric($nome)){
+    $nome = "NOT_VALID";
+}
+
+if(empty($peso) || !is_numeric($peso) || $peso<0){
+    $peso = "NOT_VALID";
+}
+
+if(empty($altezza_cm) || !is_numeric($altezza_cm) || $altezza_cm < 0){
+    $altezza_cm = "NOT_VALID";
+}
+
+if($bmi==0){
+    $bmi = "NOT_VALID";
+    $classe_card = "NOT_VALID";
+}
 
 // Calcolo del BMI: peso in kg / (altezza in metri)^2
 $altezza_m = $altezza_cm / 100;
@@ -35,24 +55,6 @@ if ($bmi < 18.5) {
     $testo_fascia = "OBESITÀ";
 }
 
-//Controlli pre-scrittura su file
-
-if(empty($nome) || is_numeric($nome)){
-    $nome = "NOT_VALID";
-}
-
-if(empty($peso) || !is_numeric($peso)){
-    $peso = "NOT_VALID";
-}
-
-if(empty($altezza_cm) || !is_numeric($altezza_cm)){
-    $altezza_cm = "NOT_VALID";
-}
-
-if($bmi==0){
-    $bmi = "NOT_VALID";
-    $classe_card = "NOT_VALID";
-}
 
 
 //Creazione e scrittura dei valori sul file
@@ -102,12 +104,12 @@ if($bmi==0){
             <div class="card <?php echo $classe_card; ?>">
                 <div class="user-name"><?php echo $nome; ?></div>
                 <div class="user-info">Peso <?php echo $peso; ?> kg · Altezza <?php echo $altezza_cm; ?> cm</div>
-                <div class="bmi-value"><?php echo number_format($bmi,2) ?></div>
+                <div class="bmi-value"><?php echo is_numeric($bmi) ? number_format($bmi,2) : "NOT VALID" ?></div>
                 <div class="fascia"><?php echo $testo_fascia; ?></div>
             </div>
 
             <div style="text-align: center; margin-top: 12px;">
-                <a href="formBMI.html" class="link-ritorno">Calcola di nuovo</a>
+                <a href="index.html" class="link-ritorno">Calcola di nuovo</a>
             </div>
         </div>
     </div>
